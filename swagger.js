@@ -11,7 +11,7 @@ const options = {
     },
     servers: [
         {
-        url: "http://localhost:3000",
+        url: "http://localhost:3000", 
         },
     ],
     },
@@ -22,6 +22,7 @@ const swaggerSpec = swaggerJsDoc(options);
 
 function swaggerDocs(app) {
     app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+    console.log("✨ Documentación Swagger activa en http://localhost:3000/api-docs");
 }
 
 module.exports = swaggerDocs;
