@@ -15,6 +15,7 @@ const {
  *   description: Gestión de reservas de habitaciones
  */
 
+// 1️⃣ Crear una nueva reserva
 /**
  * @swagger
  * /api/reservas:
@@ -45,18 +46,53 @@ const {
  */
 router.post('/', crearReserva);
 
+// 2️⃣ Obtener todas las reservas o filtradas por query
 /**
  * @swagger
  * /api/reservas:
  *   get:
- *     summary: Obtener todas las reservas
+ *     summary: Obtener todas las reservas o aplicar filtros por query
  *     tags: [Reservas]
+ *     parameters:
+ *       - in: query
+ *         name: hotel
+ *         schema:
+ *           type: string
+ *         description: Nombre del hotel
+ *       - in: query
+ *         name: tipo_habitacion
+ *         schema:
+ *           type: string
+ *         description: Tipo de habitación
+ *       - in: query
+ *         name: estado
+ *         schema:
+ *           type: string
+ *         description: Estado de la reserva
+ *       - in: query
+ *         name: num_huespedes
+ *         schema:
+ *           type: integer
+ *         description: Número de huéspedes
+ *       - in: query
+ *         name: fecha_inicio
+ *         schema:
+ *           type: string
+ *           format: date
+ *         description: Fecha de inicio (para rango de fechas)
+ *       - in: query
+ *         name: fecha_fin
+ *         schema:
+ *           type: string
+ *           format: date
+ *         description: Fecha de fin (para rango de fechas)
  *     responses:
  *       200:
- *         description: Lista de todas las reservas
+ *         description: Lista de reservas (filtradas o no)
  */
 router.get('/', obtenerReservas);
 
+// 3️⃣ Obtener una reserva por ID
 /**
  * @swagger
  * /api/reservas/{id}:
@@ -78,6 +114,7 @@ router.get('/', obtenerReservas);
  */
 router.get('/:id', obtenerReservaPorId);
 
+// 4️⃣ Actualizar una reserva
 /**
  * @swagger
  * /api/reservas/{id}:
@@ -112,6 +149,7 @@ router.get('/:id', obtenerReservaPorId);
  */
 router.put('/:id', actualizarReserva);
 
+// 5️⃣ Eliminar una reserva
 /**
  * @swagger
  * /api/reservas/{id}:
