@@ -9,7 +9,7 @@ const crearReserva = (req, res) => {
     res.status(201).json(nuevaReserva);
 };
 
-// Obtener todas las reservas o filtrar por query params (Rúbrica 6️⃣ a 🔟)
+// Obtener todas las reservas o filtrar por query params (Rúbrica 6️ a 10)
 const obtenerReservas = (req, res) => {
     let resultado = [...reservas];
     const {
@@ -47,6 +47,12 @@ const obtenerReservas = (req, res) => {
             const fechaReserva = new Date(r.fecha);
             return !isNaN(fechaReserva) && fechaReserva >= inicio && fechaReserva <= fin;
         });
+    }
+
+    // ✅ Si no hay resultados y se usaron filtros, enviar 404 con mensaje
+    const seAplicaronFiltros = hotel || tipo_habitacion || estado || num_huespedes || (fecha_inicio && fecha_fin);
+    if (seAplicaronFiltros && resultado.length === 0) {
+        return res.status(404).json({ mensaje: "No se encontraron reservas con los criterios proporcionados" });
     }
 
     res.json(resultado);
