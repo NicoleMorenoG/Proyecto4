@@ -1,12 +1,32 @@
+// Importar modelo
+const Reserva = require('../models/reserva');
+
 // Almacén temporal de reservas (solo en memoria)
 const reservas = [];
 
 // Crear una nueva reserva
 const crearReserva = (req, res) => {
-    const nuevaReserva = req.body;
-    nuevaReserva.id = Date.now(); // ID único
+    const { nombre, hotel, tipo_habitacion, estado, num_huespedes, fecha } = req.body;
+
+    // Validar que num_huespedes sea un número
+    if (num_huespedes && isNaN(Number(num_huespedes))) {
+        return res.status(400).json({ mensaje: "El campo 'num_huespedes' debe ser un número válido" });
+    }
+
+    const id = Date.now();
+
+    const nuevaReserva = new Reserva(
+        id,
+        nombre,
+        hotel,
+        tipo_habitacion,
+        estado,
+        num_huespedes,
+        fecha
+    );
+
     reservas.push(nuevaReserva);
-    res.status(201).json(nuevaReserva);
+    res.status(201).json(nuevaReserva.getInfo());
 };
 
 // Obtener todas las reservas o filtrar por query params (Rúbrica 6️ a 10)
