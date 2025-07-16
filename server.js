@@ -5,7 +5,7 @@ const reservasRoutes = require('./routes/reservaRoutes');
 // Swagger
 const swaggerUi = require('swagger-ui-express');
 const swaggerJsdoc = require('swagger-jsdoc');
-const swaggerDocs = require('./swagger');
+const swaggerDocs = require('./swagger/swagger');
 
 // Configuración dotenv
 dotenv.config();
