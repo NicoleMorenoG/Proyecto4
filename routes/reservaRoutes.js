@@ -30,20 +30,30 @@ const {
  *             type: object
  *             required:
  *               - nombre
+ *               - hotel
+ *               - tipo_habitacion
+ *               - estado
+ *               - num_huespedes
  *               - fecha
- *               - habitacion
  *             properties:
  *               nombre:
  *                 type: string
+ *               hotel:
+ *                 type: string
+ *               tipo_habitacion:
+ *                 type: string
+ *               estado:
+ *                 type: string
+ *               num_huespedes:
+ *                 type: integer
  *               fecha:
  *                 type: string
  *                 format: date
- *               habitacion:
- *                 type: string
  *     responses:
  *       201:
- *         description: Reserva creada correctamente
+ *         description: Reserva creada exitosamente
  */
+
 router.post('/', crearReserva);
 
 // 2️⃣ Obtener todas las reservas o filtradas por query
@@ -79,13 +89,13 @@ router.post('/', crearReserva);
  *         schema:
  *           type: string
  *           format: date
- *         description: Fecha de inicio (para rango de fechas)
+ *         description: Fecha de inicio (para rango de fechas. Ej:2025-12-30)
  *       - in: query
  *         name: fecha_fin
  *         schema:
  *           type: string
  *           format: date
- *         description: Fecha de fin (para rango de fechas)
+ *         description: Fecha de fin (para rango de fechas. Ej:2025-12-30)
  *     responses:
  *       200:
  *         description: Lista de reservas (filtradas o no)
@@ -134,19 +144,32 @@ router.get('/:id', obtenerReservaPorId);
  *         application/json:
  *           schema:
  *             type: object
+ *             required:
+ *               - nombre
+ *               - hotel
+ *               - tipo_habitacion
+ *               - estado
+ *               - num_huespedes
+ *               - fecha
  *             properties:
  *               nombre:
  *                 type: string
+ *               hotel:
+ *                 type: string
+ *               tipo_habitacion:
+ *                 type: string
+ *               estado:
+ *                 type: string
+ *               num_huespedes:
+ *                 type: integer
  *               fecha:
  *                 type: string
- *               habitacion:
- *                 type: string
+ *                 format: date
  *     responses:
  *       200:
- *         description: Reserva actualizada
- *       404:
- *         description: Reserva no encontrada
+ *         description: Reserva actualizada exitosamente
  */
+
 router.put('/:id', actualizarReserva);
 
 // 5️⃣ Eliminar una reserva

@@ -1,8 +1,8 @@
 // Importar modelo
 const Reserva = require('../models/reserva');
 
-// Almacén temporal de reservas (solo en memoria)
-const reservas = [];
+// Importar arreglo de reservas desde carpeta 'data'
+const reservas = require('../data/reservaData');
 
 // Crear una nueva reserva
 const crearReserva = (req, res) => {
